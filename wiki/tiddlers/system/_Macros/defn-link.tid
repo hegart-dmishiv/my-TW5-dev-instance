@@ -1,0 +1,9 @@
+created: 20150920113413983
+modified: 20150920114409163
+tags: $:/tags/Macro
+title: $:/_Macros/defn-link
+type: text/vnd.tiddlywiki
+
+\define defn-link(target)
+<$link to="""$target$"""><abbr title={{$target$!!defn}}>$target$</abbr></$link>
+\end
