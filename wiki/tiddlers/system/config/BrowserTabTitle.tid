@@ -1,0 +1,7 @@
+created: 20150927132712110
+modified: 20150927133649803
+tags: systemConfig
+title: $:/config/BrowserTabTitle
+type: text/vnd.tiddlywiki
+
+function getPageTitle() { return wikifyPlain("SiteTitle"); }
