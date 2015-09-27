@@ -1,0 +1,7 @@
+created: 20150927204810124
+modified: 20150927204945368
+tags: modified-shadow
+title: $:/core/wiki/title
+type: text/vnd.tiddlywiki
+
+{{$:/SiteTitle}} — {{$:/HistoryList!!current-tiddler}}
