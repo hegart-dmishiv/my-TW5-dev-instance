@@ -1,34 +1,75 @@
-created: 20151230081339385
-list-before: $:/core/ui/ViewTemplate/title
-modified: 20151230081715070
+apex_tag: Contents
+created: 20151230084404491
+length_limit: 5
+list-after: $:/core/ui/ViewTemplate/title
+modified: 20151230095832439
 tags: $:/tags/ViewTemplate
 title: $:/_Macros/breadcrumbs
 type: text/vnd.tiddlywiki
+use_apex_tag: true
 
 \define again()
-<$list filter=<<First>>><$link to=<<currentTiddler>>><$view field='title'/></$link> > </$list>
-<$list filter=<<Extra>> emptyMessage=''>... > </$list>
-<$list filter=<<End>>><$link to=<<currentTiddler>>><$view field='title'/></$link> > </$list>
+<$list filter=<<First>>>
+	<$reveal type='match' state='Tiddler Breadcrumbs Template!!use_apex_tag' text='true'>
+		<$reveal type='match' state='!!title' text={{Tiddler Breadcrumbs Template!!apex_tag}}>
+			<$link to=<<currentTiddler>>>
+				<$view field='title'/>
+			</$link>
+			> 
+			<$list filter=<<Extra>> emptyMessage=''>
+				... > 
+			</$list>
+			<$list filter=<<End>>>
+				<$link to=<<currentTiddler>>>
+					<$view field='title'/>
+				</$link>
+				> 
+			</$list>
+		</$reveal>
+	</$reveal>
+	<$reveal type='nomatch' state='Tiddler Breadcrumbs Template!!use_apex_tag' text='true'>
+		<$link to=<<currentTiddler>>><$view field='title'/></$link> > 
+		<$list filter=<<Extra>> emptyMessage=''>... > 
+		</$list>
+		<$list filter=<<End>>>
+			<$link to=<<currentTiddler>>>
+				<$view field='title'/>
+			</$link>
+			> 
+		</$list>
+	</$reveal>
+</$list>
 \end
 
 \define finalFilter()
 <$set name=First filter='$(TheFilter)$ +[last[]]'>
-<$set name=End filter='$(TheFilter)$ +[butlast[]]  +[butfirst[]] +[first[3]] +[reverse[]]'>
-<$set name=Extra filter='$(TheFilter)$ +[butlast[]] +[butfirst[]] +[butfirst[3]] +[limit[1]]' emptyValue='[is[system]!is[system]]'>
-<<again>>
-</$set>
-</$set>
+	<$set name=End filter='$(TheFilter)$ +[butlast[]]  +[butfirst[]] +[first{Tiddler Breadcrumbs Template!!length_limit}] +[reverse[]]'>
+		<$set name=Extra filter='$(TheFilter)$ +[butlast[]] +[butfirst[]] +[butfirst{Tiddler Breadcrumbs Template!!length_limit}] +[limit[1]]' emptyValue='[is[system]!is[system]]'>
+			<<again>>
+		</$set>
+	</$set>
 </$set>
 \end
 
 \define breadcrumbs()
 <$list filter='[is[current]tags[]]-[[$:/tags/SideBar]]' emptyMessage='<br><<finalFilter>>'>
-<$set name=TheFilter filter='$(TheFilter)$ [<currentTiddler>]'>
-<<breadcrumbs>>
-</$set>
+	<$set name=TheFilter filter='$(TheFilter)$ [<currentTiddler>]'>
+		<<breadcrumbs>>
+	</$set>
 </$list>
 \end
 
-<$set name=TheFilter filter='[is[current]]'>
-<small><<breadcrumbs>></small>
-</$set>
+<$reveal type='nomatch' state='$:/state/Global/ShowBreadcrumbs' text=true>
+	<$button class='tc-btn-invisible' set='$:/state/Global/ShowBreadcrumbs' setTo='true'>
+		{{$:/core/images/right-arrow}} Breadcrumbs:
+	</$button>
+</$reveal>
+
+<$reveal type='match' state='$:/state/Global/ShowBreadcrumbs' text=true>
+	<$button class='tc-btn-invisible' set='$:/state/Global/ShowBreadcrumbs' setTo='false'>
+		{{$:/core/images/down-arrow}} Breadcrumbs:
+	</$button>
+	<$set name=TheFilter filter='[is[current]]'>
+		<small><<breadcrumbs>></small>
+	</$set>
+</$reveal>
