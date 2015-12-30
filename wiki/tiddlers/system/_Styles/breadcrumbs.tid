@@ -1,0 +1,49 @@
+created: 20151230091328281
+modified: 20151230165328420
+tags: $:/tags/Stylesheet
+title: $:/_Styles/breadcrumbs
+type: application/javascript
+
+.breadcrumb {
+    list-style: none;
+    overflow: hidden;
+    margin-left: -35px;
+    margin-top: -10px;
+}
+.breadcrumb li {
+    background: #F6F6F6;
+    padding: 2px 0 2px 36px;
+    background: #F6F6F6;
+    position: relative;
+    display: block;
+    float: left;
+}
+.breadcrumb li:before {
+    content:" ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-left: 20px solid #ffffff;
+    position: absolute;
+    top: 110%;
+    margin-top: -25px;
+    margin-left: 2px;
+    left: 100%;
+    z-index: 1;
+}
+.breadcrumb li:after {
+    content:" ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-left: 20px solid #F6F6F6;
+    position: absolute;
+    top: 110%;
+    margin-top: -25px;
+    left: 100%;
+    z-index: 2;
+}
