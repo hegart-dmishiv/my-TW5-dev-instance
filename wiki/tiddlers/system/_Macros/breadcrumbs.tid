@@ -1,15 +1,27 @@
-created: 20151230081339385
-list-before: $:/core/ui/ViewTemplate/title
-modified: 20151230081715070
-tags: $:/tags/ViewTemplate
-title: $:/_Macros/breadcrumbs
-type: text/vnd.tiddlywiki
+\define again()
+<$list filter=<<First>>><$link to=<<currentTiddler>>><$view field='title'/></$link> > </$list>
+<$list filter=<<Extra>> emptyMessage=''>... > </$list>
+<$list filter=<<End>>><$link to=<<currentTiddler>>><$view field='title'/></$link> > </$list>
+\end
+
+\define finalFilter()
+<$set name=First filter='$(TheFilter)$ +[last[]]'>
+<$set name=End filter='$(TheFilter)$ +[butlast[]]  +[butfirst[]] +[first[3]] +[reverse[]]'>
+<$set name=Extra filter='$(TheFilter)$ +[butlast[]] +[butfirst[]] +[butfirst[3]] +[limit[1]]' emptyValue='[is[system]!is[system]]'>
+<<again>>
+</$set>
+</$set>
+</$set>
+\end
 
 \define breadcrumbs()
-<$list filter='[is[current]tags[]]-[[$:/tags/SideBar]]' emptyMessage='<br>'>
- < <$link to=<<currentTiddler>>><$view field='title'/></$link>
+<$list filter='[is[current]tags[]]-[[$:/tags/SideBar]]' emptyMessage='<br><<finalFilter>>'>
+<$set name=TheFilter filter='$(TheFilter)$ [<currentTiddler>]'>
 <<breadcrumbs>>
+</$set>
 </$list>
 \end
 
+<$set name=TheFilter filter='[is[current]]'>
 <small><<breadcrumbs>></small>
+</$set>
