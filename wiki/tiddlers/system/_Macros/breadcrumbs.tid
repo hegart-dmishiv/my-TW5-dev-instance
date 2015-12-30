@@ -2,7 +2,8 @@ apex_tag: Contents
 created: 20151230084404491
 length_limit: 5
 list-after: $:/core/ui/ViewTemplate/title
-modified: 20151230095832439
+modified: 20151230114311589
+revision: 0
 tags: $:/tags/ViewTemplate
 title: $:/_Macros/breadcrumbs
 type: text/vnd.tiddlywiki
@@ -10,8 +11,8 @@ use_apex_tag: true
 
 \define again()
 <$list filter=<<First>>>
-	<$reveal type='match' state='Tiddler Breadcrumbs Template!!use_apex_tag' text='true'>
-		<$reveal type='match' state='!!title' text={{Tiddler Breadcrumbs Template!!apex_tag}}>
+	<$reveal type='match' state='$:/_Macros/breadcrumbs!!use_apex_tag' text='true'>
+		<$reveal type='match' state='!!title' text={{$:/_Macros/breadcrumbs!!apex_tag}}>
 			<$link to=<<currentTiddler>>>
 				<$view field='title'/>
 			</$link>
@@ -27,7 +28,7 @@ use_apex_tag: true
 			</$list>
 		</$reveal>
 	</$reveal>
-	<$reveal type='nomatch' state='Tiddler Breadcrumbs Template!!use_apex_tag' text='true'>
+	<$reveal type='nomatch' state='$:/_Macros/breadcrumbs!!use_apex_tag' text='true'>
 		<$link to=<<currentTiddler>>><$view field='title'/></$link> > 
 		<$list filter=<<Extra>> emptyMessage=''>... > 
 		</$list>
@@ -43,8 +44,8 @@ use_apex_tag: true
 
 \define finalFilter()
 <$set name=First filter='$(TheFilter)$ +[last[]]'>
-	<$set name=End filter='$(TheFilter)$ +[butlast[]]  +[butfirst[]] +[first{Tiddler Breadcrumbs Template!!length_limit}] +[reverse[]]'>
-		<$set name=Extra filter='$(TheFilter)$ +[butlast[]] +[butfirst[]] +[butfirst{Tiddler Breadcrumbs Template!!length_limit}] +[limit[1]]' emptyValue='[is[system]!is[system]]'>
+	<$set name=End filter='$(TheFilter)$ +[butlast[]]  +[butfirst[]] +[first{$:/_Macros/breadcrumbs!!length_limit}] +[reverse[]]'>
+		<$set name=Extra filter='$(TheFilter)$ +[butlast[]] +[butfirst[]] +[butfirst{$:/_Macros/breadcrumbs!!length_limit}] +[limit[1]]' emptyValue='[is[system]!is[system]]'>
 			<<again>>
 		</$set>
 	</$set>
