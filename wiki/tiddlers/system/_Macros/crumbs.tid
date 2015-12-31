@@ -17,4 +17,4 @@ title: $:/_Macros/crumbs
    </$list>
 \end
 
-<<toc-path>>
+<small><<toc-path>></small>
