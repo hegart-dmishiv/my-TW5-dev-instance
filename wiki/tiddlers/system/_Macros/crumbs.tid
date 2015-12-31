@@ -1,0 +1,20 @@
+created: 20151230164435693
+list-before: $:/core/ui/ViewTemplate/title
+modified: 20151230171016154
+tags: $:/tags/ViewTemplate
+title: $:/_Macros/crumbs
+
+\define toc-path()
+<ul class="breadcrumb">
+   <$macrocall $name="toc-path-body" here=<<currentTiddler>>/>
+</ul>
+\end
+
+\define toc-path-body(here,exclude)
+   <$list filter="""[title[$here$]tags[]] $exclude$ -[[$here$]] -[[$:/tags/SideBar]] +[limit[1]]""">
+      <$macrocall $name="toc-path-body" here=<<currentTiddler>> exclude="""$exclude$ -[[$here$]]"""/>
+      <li><$link><$text text=<<currentTiddler>>/></$link></li>
+   </$list>
+\end
+
+<<toc-path>>
