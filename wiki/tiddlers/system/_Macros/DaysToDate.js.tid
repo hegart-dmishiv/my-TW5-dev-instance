@@ -1,0 +1,52 @@
+created: 20160101234009970
+modified: 20160102010220245
+module-type: macro
+tags: $:/tags/Macro
+title: $:/_Macros/DaysToDate.js
+type: application/javascript
+
+/*\
+title: $:/_Macros/DaysToDate.js
+type: application/javascript
+module-type: macro
+author: Hegart Dmishiv
+
+Macro to return an integer for the number of days between the
+current date and a specified date. 
+
+Based on the TiddlyWiki core module $:/core/modules/macros/now.js
+and  https://blog.grade.net/how-to-create-a-simple-javascript-countdown-timer
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+/*
+Information about this macro
+*/
+
+exports.name = "DaysToDate";
+
+exports.params = [
+	{name: "target_date"}
+];
+
+/*
+Run the macro
+*/
+exports.run = function(target_date) {
+ 
+    // find the amount of seconds between now and target date
+    var current_date = new Date().getTime();
+    var seconds_left = (target_date - current_date) / 1000;
+ 
+    // calculate days left, based on 86,400 seconds per day
+    DaysToDate = parseInt(seconds_left / 86400);
+
+return DaysToDate;
+};
+
+})();
