@@ -44,7 +44,7 @@ exports.run = function(target_date) {
     var seconds_left = (target_date - current_date) / 1000;
  
     // calculate days left, based on 86,400 seconds per day
-    DaysToDate = parseInt(seconds_left / 86400);
+    var DaysToDate = parseInt(seconds_left / 86400);
 
 return DaysToDate;
 };
