@@ -39,9 +39,12 @@ Run the macro
 */
 exports.run = function(target_date) {
  
+    // convert param to a date (contributed by BJ)
+    var end_date = new Date(target_date).getTime();
+ 
     // find the amount of seconds between now and target date
     var current_date = new Date().getTime();
-    var seconds_left = (target_date - current_date) / 1000;
+    var seconds_left = (end_date - current_date) / 1000;
  
     // calculate days left, based on 86,400 seconds per day
     var DaysToDate = parseInt(seconds_left / 86400);
