@@ -4,6 +4,8 @@ tags: Contents
 title: About
 type: text/vnd.tiddlywiki
 
+''There are <<DaysToDate "4/21/2016">> days until the release of Ubuntu 16.04 LTS (Xenial Xerus).''
+
 <span style="float:left; padding-right: 15px;">[img width=100 [Hegart's face.png]]</span> Welcome to my "development" TiddlyWiki. This publicly accessible wiki is here so that I can demonstrate any problems I'm having while getting to know TW, so that members of the TW community can point me in the right direction. It allows me to separate the "environment" from the "content" of my personal, offline TW instance.
 
 I'm using TW to document my home network, so I don't really want to be doing that in a public place. I have used a full MediaWiki installation for this in the past, running a LAMP server on a spare PC, with MW on top. While this was a good solution, it became difficult when the software stack on the PC hosting the wiki needed to be upgraded. My documentation about which versions of software to use, the download links, etc, were all stored on the PC that I was upgrading!
