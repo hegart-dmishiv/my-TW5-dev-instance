@@ -21,7 +21,4 @@
 			"--rendertiddler","ReadMe","readme.md","text/html",
 			"--rendertiddler","License","license.md","text/html"]
 	}
-    "config": {
-		"retain-original-tiddler-path": true
-	}
 }
